@@ -20,6 +20,10 @@ if ( IOS )
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fembed-bitcode")
 endif ()
 
+if ( ANDROID )
+    add_definitions(-DLUA_USE_POSIX -DLUA_USE_C89)
+endif ()
+
 option ( UINT_ESPECIALLY "using custom ulong" OFF )
 option ( USING_LUAJIT "using luajit" OFF )
 option ( GC64 "using gc64" OFF )
@@ -35,6 +39,29 @@ MARK_AS_ADVANCED(XLUA_PROJECT_DIR)
 
 set(LUA_SRC_PATH lua-5.3.5/src)
 set(LUAJIT_SRC_PATH luajit-2.1.0b3/src)
+
+set (CMAKE_CXX_STANDARD 11)
+set (RAPIDJSON_SRC 
+    lua-rapidjson/src/Document.cpp
+    lua-rapidjson/src/Schema.cpp
+    lua-rapidjson/src/Userdata.hpp
+    lua-rapidjson/src/file.hpp
+    lua-rapidjson/src/luax.hpp
+    lua-rapidjson/src/rapidjson.cpp
+    lua-rapidjson/src/values.cpp
+    lua-rapidjson/src/values.hpp
+)
+
+set_property(
+    SOURCE ${RAPIDJSON_SRC}
+    APPEND
+    PROPERTY COMPILE_DEFINITIONS
+    LUA_LIB
+)
+
+list(APPEND THIRDPART_INC lua-rapidjson/src lua-rapidjson/rapidjson/include)
+set (THIRDPART_SRC ${THIRDPART_SRC} ${RAPIDJSON_SRC})
+
 
 if (USING_LUAJIT)
 	
