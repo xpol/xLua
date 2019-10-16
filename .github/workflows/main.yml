@@ -10,4 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Check environment variables
-      run: export
+      run: |
+        export
+        find $ANDROID_SDK_ROOT -name ndk-build
+      
