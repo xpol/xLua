@@ -12,5 +12,5 @@ jobs:
     - name: Check environment variables
       run: |
         export
-        find $ANDROID_SDK_ROOT -name ndk-build
-      
+        find /usr/local/lib/android -name ndk-build
+
