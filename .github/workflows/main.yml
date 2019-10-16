@@ -12,5 +12,5 @@ jobs:
     - name: Check environment variables
       run: |
         export
-        find /usr/local/lib/android -name ndk-build
+        which ndk-build
 
