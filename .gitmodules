@@ -1,0 +1,3 @@
+[submodule "build/lua-rapidjson"]
+	path = build/lua-rapidjson
+	url = https://github.com/xpol/lua-rapidjson.git
