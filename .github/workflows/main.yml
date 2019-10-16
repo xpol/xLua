@@ -4,12 +4,12 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: macOS-latest
-    
+
     steps:
     - uses: actions/checkout@v1
+      with:
+        submodules: true
     - name: Build for Android
       run: |
-        export
         (cd build; bash make_android_lua53_arm64.sh)
